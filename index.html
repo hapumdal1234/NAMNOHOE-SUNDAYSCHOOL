@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>남부산 남노회 주일학교 연합회</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: 따뜻하고 밝은 교회학교 소식지, 어른도 아이도 편하게 읽는 말투
+   IDEA: 바닷가 언덕 위 교회 — 부산 바다와 주일학교 아이들
+   PICTURE: 첫 화면에 바다, 언덕, 교회, 손잡은 아이들을 그린 장면
+   COLOUR and TYPE: 바다 파랑 주색, 햇살 노랑 보조, 산호빛 강조 / Jua 제목 + Noto Sans KR 본문
+   LAYOUT: 상단 메뉴(드롭다운) → 화면별 본문 → 가입자 수 푸터 */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0e1726);--ink:light-dark(#16223a,#e9eef8);--mute:light-dark(#5b6782,#9fb0cc);
+--sea:light-dark(#1f6fe0,#4b92f5);--sea2:light-dark(#e8f1ff,#16243b);--sun:#ffc63d;--coral:light-dark(#f2553c,#ff7a63);
+--card:light-dark(#ffffff,#152036);--line:light-dark(#dfe6f2,#26344f)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Noto Sans KR",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Jua,"Noto Sans KR",sans-serif;font-weight:400;line-height:1.15;text-wrap:balance;margin:0 0 .4em}
+h1{font-size:clamp(32px,5vw,50px)}h2{font-size:clamp(26px,3.4vw,34px)}h3{font-size:21px}
+a{color:var(--sea)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(4vw,16px)}
+header{position:sticky;top:0;z-index:20;background:var(--sea);color:#fff;box-shadow:0 2px 10px #0002}
+.hd{display:flex;align-items:center;gap:16px;min-height:64px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-family:Jua;font-size:20px;line-height:1.1}
+.logo svg{flex:none}
+nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.mi{position:relative}
+.mi>a,.mi>button{display:block;padding:10px 14px;color:#fff;text-decoration:none;background:none;border:0;font:500 16px "Noto Sans KR";border-radius:10px;cursor:pointer;min-height:44px}
+.mi>a:hover,.mi>button:hover,.mi.on>a{background:#ffffff26}
+.sub{display:none;position:absolute;left:0;top:100%;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:150px;box-shadow:0 10px 24px #0003}
+.sub a{display:block;padding:10px 12px;color:var(--ink);text-decoration:none;border-radius:8px}
+.sub a:hover{background:var(--sea2)}
+.mi:hover .sub,.mi:focus-within .sub{display:block}
+.acct{display:flex;gap:6px;align-items:center}
+.burger{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:26px;width:44px;height:44px;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 18px;border-radius:12px;border:0;background:var(--sea);color:#fff;font:700 16px "Noto Sans KR";cursor:pointer;text-decoration:none}
+.btn.sun{background:var(--sun);color:#3a2a00}.btn.ghost{background:transparent;color:var(--sea);box-shadow:inset 0 0 0 2px var(--sea)}
+.btn.sm{min-height:36px;padding:0 12px;font-size:14px;border-radius:9px}.btn.del{background:var(--coral)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.hero{background:linear-gradient(var(--sea2),var(--bg))}
+.hgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:32px;align-items:center;padding:40px 0}
+.hero p{font-size:17px;color:var(--mute);max-width:34em}
+.hero .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.scene{width:100%;height:auto;display:block;border-radius:24px}
+main{min-height:60vh;padding:32px 0 56px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card .meta{font-size:14px;color:var(--mute)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.between{justify-content:space-between}
+.chip{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:700 16px "Noto Sans KR";cursor:pointer}
+.chip.on{background:var(--sea);border-color:var(--sea);color:#fff}
+.crumb{font-size:14px;color:var(--mute);margin-bottom:6px}
+.ev{display:flex;flex-direction:column;gap:6px;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.ev .ico{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:var(--sea2)}
+.ev.on{outline:3px solid var(--sea)}
+.photos{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr))}
+.ph{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--sea2)}
+.ph img,.ph video{width:100%;height:100%;object-fit:cover;display:block}
+.ph .x{position:absolute;top:6px;right:6px}
+.empty{padding:28px;text-align:center;color:var(--mute);border:2px dashed var(--line);border-radius:16px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:14px;color:var(--mute);font-weight:500}
+.post{border-bottom:1px solid var(--line);padding:16px 0}
+.post h3{margin:0 0 4px}.post .body{white-space:pre-wrap}
+form.f{max-width:620px;display:grid;gap:14px}
+label{display:grid;gap:6px;font-weight:500;font-size:15px}
+input,select,textarea{font:16px "Noto Sans KR";padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);min-height:44px;width:100%}
+textarea{min-height:120px;resize:vertical}
+.radios{display:flex;gap:8px;flex-wrap:wrap}
+.radios label{display:flex;align-items:center;gap:6px;font-weight:400;padding:0 14px;min-height:44px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer}
+.radios input{width:auto;min-height:0}
+.radios label:has(input:checked){border-color:var(--sea);background:var(--sea2)}
+.box{background:var(--sea2);border-radius:14px;padding:14px;display:grid;gap:12px}
+.note{font-size:13px;color:var(--mute)}
+.rate button{width:48px;height:48px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:700 18px "Noto Sans KR";cursor:pointer}
+.rate button.on{background:var(--sun);border-color:var(--sun);color:#3a2a00}
+.reply{margin-top:8px;padding:10px 12px;border-left:4px solid var(--sun);background:var(--sea2);border-radius:8px;white-space:pre-wrap}
+[hidden]{display:none!important}
+.sv .sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:18px}
+.q{display:grid;gap:8px;border-radius:12px}.q.miss{outline:3px solid var(--coral);outline-offset:6px}
+.qt{font-weight:700;font-size:16px}.req{font-size:12px;color:var(--coral);font-weight:700;margin-left:4px}
+.rate label{width:48px;justify-content:center;padding:0;position:relative;font-weight:700}
+.rate input{position:absolute;opacity:0}.rate label:has(input:checked){background:var(--sun);border-color:var(--sun);color:#3a2a00}
+.radios label:has(input:focus-visible){outline:3px solid var(--sun);outline-offset:2px}
+.items{display:grid;gap:4px}.it{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.it .note{grid-column:2}
+.rep{border-top:1px solid var(--line);padding:18px 0}.rgrid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin:10px 0}
+.rgrid .qt{margin:12px 0 6px;font-size:14px}.bar{display:grid;grid-template-columns:minmax(0,1fr) 34% 40px;gap:10px;align-items:center;font-size:14px;padding:3px 0}
+.bt{height:10px;border-radius:5px;background:var(--sea2);overflow:hidden}.bt i{display:block;height:100%;background:var(--sea);border-radius:5px}.bar b{text-align:right}
+details{margin-top:8px}summary{cursor:pointer;font-weight:700;min-height:36px;display:flex;align-items:center}details ul{margin:6px 0;padding-left:20px}details li{margin:4px 0}
+@media(max-width:600px){.it{grid-template-columns:1fr}.it .note{grid-column:1}.bar{grid-template-columns:minmax(0,1fr) 30% 34px}}
+.staff tr.same td{border-top:0}.staff tr.same .rep{visibility:hidden}@media(max-width:600px){.staff tr.same .rep{visibility:visible}}
+.consent ul{margin:0;padding-left:20px;font-size:14px;display:grid;gap:4px}.ck{display:flex;gap:8px;align-items:center;font-weight:500}.ck input{width:22px;height:22px;min-height:0}
+.agrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr))}
+.art{display:flex;flex-direction:column;text-align:left;padding:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);color:var(--ink);font:inherit;cursor:pointer;transition:transform .15s}
+.art:hover{transform:translateY(-3px)}.art:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.aimg{aspect-ratio:4/3;background:var(--sea2);overflow:hidden;display:block}.aimg img{width:100%;height:100%;object-fit:cover;display:block}
+.ainfo{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;padding:10px 12px}.ainfo .meta{width:100%}
+.aw{display:inline-block;font-size:13px;font-weight:700;padding:2px 8px;border-radius:6px;background:#e6e9ef;color:#3b4252}
+.aw.pc{background:var(--sea2);color:var(--sea)}.aw.최우수{background:var(--coral);color:#fff}.aw.우수{background:var(--sea);color:#fff}.aw.장려{background:var(--sun);color:#3a2a00}
+.mbox.wide{width:min(980px,100%)}.lb img{width:100%;max-height:72vh;object-fit:contain;border-radius:12px;background:#0002;display:block}
+footer{background:var(--sea);color:#fff;padding:28px 0}
+.cnt{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.cnt div{background:#ffffff22;border-radius:14px;padding:10px 18px;display:flex;gap:10px;align-items:baseline}
+.cnt b{font:400 28px Jua}
+.modal{position:fixed;inset:0;background:#0008;display:none;place-items:center;z-index:50;padding:16px}
+.modal.on{display:grid}
+.mbox{background:var(--bg);border-radius:18px;padding:22px;width:min(560px,100%);max-height:90vh;overflow:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;opacity:0;transition:opacity .25s;z-index:60;pointer-events:none}
+.toast.on{opacity:1}
+.badge{display:inline-block;font-size:13px;padding:2px 8px;border-radius:6px;background:var(--sun);color:#3a2a00;font-weight:700}
+@media(max-width:900px){.burger{display:block}nav{display:none;position:absolute;left:0;right:0;top:64px;background:var(--sea);flex-direction:column;align-items:stretch;padding:8px 16px 16px}nav.open{display:flex}.sub{position:static;display:block;background:transparent;border:0;box-shadow:none;padding:0 0 0 12px}.sub a{color:#fff}.sub a:hover{background:#ffffff22}.acct{flex-wrap:wrap}}
+@media(max-width:700px){.hgrid{grid-template-columns:1fr;padding:24px 0}}
+@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flex;justify-content:space-between;gap:12px;border:0;padding:4px 0}.stack td::before{content:attr(data-l);color:var(--mute)}}
+@media(prefers-reduced-motion:no-preference){.note{animation:fl 3.6s ease-in-out infinite alternate}@keyframes fl{to{transform:translateY(-10px)}}.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sy 3.2s ease-in-out infinite alternate}.sway2{transform-box:fill-box;transform-origin:50% 100%;animation:sy2 5s ease-in-out infinite alternate}@keyframes sy{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}@keyframes sy2{from{transform:rotate(-1deg)}to{transform:rotate(1deg)}}.wave{animation:sw 6s ease-in-out infinite alternate}@keyframes sw{to{transform:translateX(-18px)}}}
+</style>
+</head>
+<body>
+<header><div class="wrap hd">
+  <a class="logo" href="#home"><svg width="38" height="38" viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="#ffc63d"/><path d="M20 7v26M12 15h16" stroke="#1f6fe0" stroke-width="4" stroke-linecap="round"/></svg><span>남부산 남노회<br>주일학교 연합회</span></a>
+  <button class="burger" id="burger" aria-label="메뉴 열기">☰</button>
+  <nav id="nav">
+    <div class="mi" data-g="about"><a href="#churches">노회소개</a><div class="sub"><a href="#churches">소속교회</a><a href="#staff">임원진</a></div></div>
+    <div class="mi" data-g="news"><a href="#news">알림마당</a></div>
+    <div class="mi" data-g="events"><a href="#events">주요행사</a><div class="sub" id="yearSub"></div></div>
+    <div class="mi" data-g="survey"><a href="#survey">설문조사&amp;문의하기</a><div class="sub"><a href="#survey">설문조사</a><a href="#inquiry">문의하기</a></div></div>
+    <div class="acct" id="acct"></div>
+  </nav>
+</div></header>
+
+<div id="heroSlot"></div>
+<main><div class="wrap" id="main"></div></main>
+
+<footer><div class="wrap">
+  <div class="row between"><div><h3 style="margin:0">남부산 남노회 주일학교 연합회</h3><div class="note" style="color:#ffffffcc">다음 세대를 함께 세우는 교회학교 교류 공간</div></div></div>
+  <div class="cnt"><div><span>Today 가입</span><b id="cToday">0</b></div><div><span>Total 가입자</span><b id="cTotal">0</b></div></div>
+</div></footer>
+
+<div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+{
+const K='nbss_v2',D=['영아부','유치부','유년부','초등부','중등부','고등부','청소년부'],G=['영아','유치','초등학생','중학생','고등학생','대학생'],AGES=['10대','20대','30대','40대','50대','60대','70대','80대'];
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const ymd=t=>{if(!t)return '';const d=new Date(t);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const SB_URL='https://fuefwtpfyqkjojzlbdnh.supabase.co',SB_KEY='sb_publishable_Sh53kxGH3JFPHQK2RXmabA_UedgSb83';
+const sb=window.supabase.createClient(SB_URL,SB_KEY);
+const emailOf=p=>`p${String(p).replace(/\D/g,'')}@phone.namnohoe.org`;
+const region=a=>{const m=String(a||'').match(/(?:광역시|도)\s+(\S+?[구군시])(?:\s|$)/);return m?m[1]:'기타'};
+let chQ='',chR='전체';
+let S={churches:[],staff:[],news:[],years:[],inquiries:[],surveys:[],users:[],counts:{today:0,total:0},me:null,loaded:false};
+async function q(p){const {data,error}=await p;if(error){console.error(error);throw new Error(error.message.includes('row-level')?'권한이 없어요':'저장하지 못했어요')}return data}
+async function fn(body){const {data,error}=await sb.functions.invoke('account',{body});if(error){let m='요청을 처리하지 못했어요';try{m=(await error.context.json()).error||m}catch(_){}throw new Error(m)}return data}
+async function load(){
+ const {data:{session}}=await sb.auth.getSession();
+ const [c,st,n,e,m,iq,cnt]=await Promise.all([
+  sb.from('churches').select('*').order('sort').order('id'),sb.from('staff').select('*').order('sort').order('id'),
+  sb.from('news').select('*').order('date',{ascending:false}).order('id',{ascending:false}),sb.from('events').select('*').order('year').order('sort').order('id'),
+  sb.from('media').select('*').order('id'),sb.from('inquiries').select('*').order('id'),sb.rpc('member_counts')]);
+ S.churches=c.data||[];S.staff=st.data||[];S.news=(n.data||[]).map(x=>({...x,date:String(x.date)}));
+ const media=m.data||[],ys={};
+ (e.data||[]).forEach(x=>{(ys[x.year]=ys[x.year]||{year:x.year,events:[]}).events.push({id:x.id,name:x.name,photos:media.filter(v=>v.event_id===x.id&&v.kind==='photo'),videos:media.filter(v=>v.event_id===x.id&&v.kind==='video')})});
+ S.years=Object.values(ys);
+ S.inquiries=(iq.data||[]).map(x=>({id:x.id,uid:x.user_id,title:x.title,body:x.body,by:x.by_name,date:ymd(x.created_at),reply:x.reply||''}));
+ S.counts=cnt.data||{today:0,total:0};
+ S.me=null;S.users=[];S.surveys=[];
+ if(session){
+  const {data:pr}=await sb.from('profiles').select('*').eq('id',session.user.id).maybeSingle();
+  if(pr){S.me={...pr,admin:pr.is_admin,joined:ymd(pr.created_at),kids:pr.kids||[]};
+   const sv=await sb.from('surveys').select('*').order('id');S.surveys=(sv.data||[]).map(x=>({id:x.id,uid:x.user_id,date:ymd(x.created_at),by:x.by_name,role:x.role,church:x.church,answers:x.answers||[],sem:x.sem||[],general:x.general||{}}));
+   if(pr.is_admin){const us=await sb.from('profiles').select('*').order('created_at');S.users=(us.data||[]).map(x=>({...x,joined:ymd(x.created_at),kids:x.kids||[]}))}}
+ }
+ S.loaded=true;
+}
+async function refresh(){try{await load()}catch(e){console.error(e);toast('데이터를 불러오지 못했어요')}render()}
+const user=()=>S.me;
+const setMe=()=>{};const save=()=>{};
+const isAdmin=()=>!!(S.me&&S.me.admin);
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2400)}
+let ev={year:null,event:null,tab:'photo'},rating=0;
+
+/* 모달 폼 */
+function modal(html){$('#mbox').classList.remove('wide');$('#mbox').innerHTML=html;$('#modal').classList.add('on')}
+function close(){$('#modal').classList.remove('on')}
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal'||e.target.dataset.close!==undefined)close()});
+function form(title,fields,onSave){
+ modal(`<h3>${esc(title)}</h3><form class="f" id="mf">${fields.map(f=>`<label>${esc(f.label)}${f.type==='textarea'?`<textarea name="${f.k}">${esc(f.v)}</textarea>`:`<input name="${f.k}" value="${esc(f.v)}" ${f.type?`type="${f.type}"`:''}>`}</label>`).join('')}<div class="row"><button class="btn">저장</button><button type="button" class="btn ghost" data-close>취소</button></div></form>`);
+ $('#mf').addEventListener('submit',async e=>{e.preventDefault();const o={};new FormData(e.target).forEach((v,k)=>o[k]=String(v).trim());const b=e.target.querySelector('button');b.disabled=true;try{const r=await onSave(o);close();if(r!==false){await load();render();toast('저장했어요')}}catch(err){toast(err.message);b.disabled=false}})}
+function ask(msg,yes){modal(`<p>${esc(msg)}</p><div class="row"><button class="btn del" id="yes">삭제</button><button class="btn ghost" data-close>취소</button></div>`);$('#yes').onclick=async()=>{$('#yes').disabled=true;try{await yes();close();await load();render();toast('삭제했어요')}catch(err){toast(err.message);close()}}}
+
+/* 표시 이름 선택 */
+const nameChoice=()=>`<div><div style="font-weight:500;font-size:15px;margin-bottom:6px">표시 이름</div><div class="radios"><label><input type="radio" name="disp" value="nick" checked>닉네임 사용</label><label><input type="radio" name="disp" value="real">실명 사용</label></div></div>`;
+const dispName=(fd)=>{const u=user();return fd.get('disp')==='real'?u.name:(u.nick||u.name)};
+
+/* 화면들 */
+const V={};
+V.home=()=>{
+ const n=[...S.news].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,3);const y=S.years[S.years.length-1];
+ return `<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))">
+ <section class="card"><div class="row between"><h3>알림마당</h3><a href="#news">더보기</a></div>${n.map(p=>`<div class="post" style="padding:10px 0"><a href="#news" style="color:var(--ink);font-weight:700;text-decoration:none">${esc(p.title)}</a><div class="meta">${p.date}</div></div>`).join('')||'<div class="empty">아직 소식이 없어요</div>'}</section>
+ <section class="card"><div class="row between"><h3>${y?y.year+'년 주요행사':'주요행사'}</h3><a href="#events">더보기</a></div><div class="grid" style="grid-template-columns:1fr 1fr;gap:10px">${y?y.events.map(e=>`<button class="card ev" data-go-ev="${y.year}|${e.id}">${evIcon(e.name)}<b>${esc(e.name)}</b><span class="meta">사진 ${e.photos.length+artOf(y.year,e).length} · 영상 ${e.videos.length}</span></button>`).join(''):''}</div></section>
+ <section class="card" style="background:var(--sun);border:0;color:#3a2a00"><h3>여러분의 목소리를 들려주세요</h3><p>남부산 남노회의 2026년 주일학교 행사-사생대회, 성경필사대회, 성경고사·암송·찬양·율동대회-에 대한 여러분의 생각을 들려주세요.</p><a class="btn" href="#survey">설문조사 참여하기</a></section></div>`};
+V.churches=()=>{
+ const regs=['전체',...[...new Set(S.churches.map(c=>region(c.addr)))]];
+ return `<div class="crumb">노회소개</div><div class="row between"><h2>소속교회 <span class="note">${S.churches.length}곳</span></h2>${isAdmin()?'<button class="btn sm" data-a="addChurch">+ 교회 추가</button>':''}</div>
+ <div class="row" style="margin:10px 0">${regs.map(r=>`<button class="chip ${r===chR?'on':''}" data-a="chReg" data-id="${r}">${r}${r==='전체'?'':` ${S.churches.filter(c=>region(c.addr)===r).length}`}</button>`).join('')}</div>
+ <input id="chSearch" type="search" placeholder="교회 이름, 목사님 이름, 동네로 찾기" value="${esc(chQ)}" style="max-width:420px;margin-bottom:16px">
+ <div class="grid" id="chGrid">${chCards()}</div>`};
+const chCards=()=>{const q=chQ.trim(),list=S.churches.filter(c=>(chR==='전체'||region(c.addr)===chR)&&(!q||(c.name+c.pastor+c.addr).includes(q)));return `${list.map(c=>`<div class="card"><h3>${esc(c.name)}</h3><div>담임목사 <b>${esc(c.pastor)}</b></div><div class="meta">${esc(c.addr)}</div><div class="meta">${c.zip?'우편번호 '+esc(c.zip):''}${c.tel?' · '+esc(c.tel):''}</div>${isAdmin()?`<div class="row" style="margin-top:10px"><button class="btn sm ghost" data-a="editChurch" data-id="${c.id}">수정</button><button class="btn sm del" data-a="delChurch" data-id="${c.id}">삭제</button></div>`:''}</div>`).join('')||'<div class="empty">찾는 교회가 없어요</div>'}`};
+V.staff=()=>`<div class="crumb">노회소개</div><div class="row between"><h2>제67기 임원조직</h2>${isAdmin()?'<button class="btn sm" data-a="addStaff">+ 임원 추가</button>':''}</div>
+ <table class="stack staff"><thead><tr><th>직책</th><th>성명</th><th>교회명</th>${isAdmin()?'<th></th>':''}</tr></thead><tbody>${S.staff.map((s,i)=>`<tr class="${i&&S.staff[i-1].role===s.role?'same':''}"><td data-l="직책"><b>${i&&S.staff[i-1].role===s.role?'<span class="rep">'+esc(s.role)+'</span>':esc(s.role)}</b></td><td data-l="성명">${esc(s.name)}</td><td data-l="교회명">${esc(s.church)}</td>${isAdmin()?`<td><div class="row"><button class="btn sm ghost" data-a="editStaff" data-id="${s.id}">수정</button><button class="btn sm del" data-a="delStaff" data-id="${s.id}">삭제</button></div></td>`:''}</tr>`).join('')}</tbody></table>
+ <div class="card" style="margin-top:22px;background:var(--sea2);border:0"><p style="margin:0">문의 사항은 각 교회 임원을 통해 문의하시거나 홈페이지 '<a href="#inquiry">문의하기</a>'에 글을 남겨주시면 연락드리겠습니다.</p></div>`;
+V.news=()=>`<div class="row between"><h2>알림마당</h2>${isAdmin()?'<button class="btn sm" data-a="addNews">+ 소식 쓰기</button>':''}</div>
+ ${[...S.news].sort((a,b)=>b.date.localeCompare(a.date)).map(p=>`<article class="post"><h3>${esc(p.title)}</h3><div class="meta">${p.date} · 관리자</div><div class="body">${esc(p.body)}</div>${isAdmin()?`<div class="row" style="margin-top:8px"><button class="btn sm ghost" data-a="editNews" data-id="${p.id}">수정</button><button class="btn sm del" data-a="delNews" data-id="${p.id}">삭제</button></div>`:''}</article>`).join('')||'<div class="empty">등록된 소식이 없어요</div>'}`;
+const ART=[["01", "최우수", "새누리교회", "한유은"], ["02", "우수", "신부산교회", "김시온"], ["03", "우수", "신부산교회", "김에셀"], ["04", "장려", "새누리교회", "황효은"], ["05", "장려", "신부산교회", "한소은"], ["06", "장려", "신부산교회", "최혜리"], ["07", "장려", "남부산교회", "최세인"], ["08", "장려", "남부산교회", "백하연"], ["09", "장려", "재송제일교회", "김하늘"], ["10", "입선", "재송제일교회", "김우주"], ["11", "입선", "재송제일교회", "김영광"], ["12", "입선", "재송제일교회", "임사랑"], ["13", "입선", "재송제일교회", "최지환"], ["14", "입선", "새누리교회", "김가온"], ["15", "입선", "신부산교회", "채지율"], ["16", "입선", "남부산교회", "김하준"], ["17", "입선", "새누리교회", "김윤슬"], ["18", "입선", "남부산교회", "김주은"], ["19", "입선", "남부산교회", "김모건"], ["20", "입선", "신부산교회", "성하윤"], ["21", "입선", "신부산교회", "김민서"], ["22", "입선", "성산교회", "한재이"], ["23", "입선", "신부산교회", "최다희"], ["24", "입선", "신부산교회", "이시온"], ["25", "입선", "신부산교회", "최시우"], ["26", "입선", "신부산교회", "박주아"], ["27", "입선", "신부산교회", "김하준"], ["28", "입선", "신부산교회", "김주한"], ["29", "입선", "신부산교회", "김민희"], ["30", "입선", "성은교회", "강설아"], ["31", "입선", "신부산교회", "박준우"], ["32", "입선", "남부산교회", "이혜지"]].map(a=>({id:a[0],award:a[1],church:a[2],name:a[3]}));
+const AWARDS=['전체','최우수','우수','장려','입선'];let artF='전체',lbI=0;
+const PR=[["01", "현장", "개회 전 예배당 전경"], ["02", "현장", "대회 안내와 개회"], ["03", "성경고사", "성경고사 시험 시간"], ["04", "찬양율동", "세일러 팀 무대"], ["05", "찬양율동", "세일러 팀 무대"], ["06", "찬양율동", "꽃무늬 팀 무대"], ["07", "찬양율동", "다 함께 손을 높이"], ["08", "찬양율동", "꽃무늬 팀 무대"], ["09", "찬양율동", "신나는 점프"], ["10", "찬양율동", "꽃무늬 팀 무대"], ["11", "찬양율동", "환한 웃음"], ["12", "찬양율동", "무대 전경"], ["13", "찬양율동", "꽃무늬 팀 무대"], ["14", "찬양율동", "두 손 들고 찬양"], ["15", "찬양율동", "무대 전경"], ["16", "찬양율동", "꽃무늬 팀 무대"], ["17", "찬양율동", "무대 전경"], ["18", "찬양율동", "손을 높이 들고"], ["19", "찬양율동", "파란 티셔츠 팀 무대"], ["20", "찬양율동", "파란 티셔츠 팀 무대"], ["21", "찬양율동", "무대 인사"], ["22", "시상식", "시상식"], ["23", "시상식", "시상식"], ["24", "시상식", "시상식"], ["25", "시상식", "시상식"], ["26", "시상식", "시상식"], ["27", "시상식", "시상식"], ["28", "시상식", "시상식"], ["29", "시상식", "시상식"], ["30", "시상식", "시상식"]].map(a=>({id:a[0],cat:a[1],cap:a[2]}));
+const PCATS=['전체','현장','성경고사','찬양율동','시상식'],PCN={'현장':'행사 현장','성경고사':'성경고사','찬양율동':'찬양·율동','시상식':'시상식'};let prF='전체',lbK='art';
+const prList=()=>PR.filter(x=>prF==='전체'||x.cat===prF);
+const artOf=(yr,e)=>!e||yr!==2026?[]:e.name==='사생대회'?ART:e.name==='성경고사·암송·찬양·율동대회'?PR:[];
+const galleryPr=()=>`<section style="margin-bottom:26px"><div class="row between"><h3 style="margin:0">행사 앨범 <span class="note">${PR.length}장</span></h3></div>
+ <div class="row" style="margin:10px 0 14px">${PCATS.map(a=>`<button class="chip ${a===prF?'on':''}" data-a="prF" data-id="${a}">${a==='전체'?'전체':PCN[a]}${a==='전체'?'':` ${PR.filter(x=>x.cat===a).length}`}</button>`).join('')}</div>
+ <div class="agrid">${prList().map((x,i)=>`<button class="art" data-a="lbp" data-id="${i}"><span class="aimg"><img loading="lazy" src="praise/${x.id}.jpg" alt="${esc(x.cap)}"></span><span class="ainfo"><span class="aw pc">${PCN[x.cat]}</span><span class="meta" style="width:auto">${esc(x.cap)}</span></span></button>`).join('')}</div></section>`;
+const artList=()=>ART.filter(w=>artF==='전체'||w.award===artF);
+const gallery=e=>e&&e.name!=='사생대회'?galleryPr():galleryArt();
+const galleryArt=()=>`<section style="margin-bottom:26px"><div class="row between"><h3 style="margin:0">작품 갤러리 <span class="note">${ART.length}점</span></h3></div>
+ <div class="row" style="margin:10px 0 14px">${AWARDS.map(a=>`<button class="chip ${a===artF?'on':''}" data-a="artF" data-id="${a}">${a}${a==='전체'?'':` ${ART.filter(w=>w.award===a).length}`}</button>`).join('')}</div>
+ <div class="agrid">${artList().map((w,i)=>`<button class="art" data-a="lb" data-id="${i}"><span class="aimg"><img loading="lazy" src="images/${w.id}.jpg" alt="${esc(w.name)} 작품"></span><span class="ainfo"><span class="aw ${w.award}">${w.award}</span><b>${esc(w.name)}</b><span class="meta">${esc(w.church)}</span></span></button>`).join('')}</div></section>`;
+function lbShow(){if(lbK==='pr'){const L=prList(),x=L[lbI];modal(`<div class="lb"><img src="praise/${x.id}.jpg" alt="${esc(x.cap)}"><div class="row between" style="margin-top:12px"><div><span class="aw pc">${PCN[x.cat]}</span> <b style="font-size:18px">${esc(x.cap)}</b></div><div class="row"><button class="btn sm ghost" data-a="lbMove" data-id="-1" aria-label="이전 사진">‹</button><span class="meta">${lbI+1} / ${L.length}</span><button class="btn sm ghost" data-a="lbMove" data-id="1" aria-label="다음 사진">›</button><button class="btn sm" data-close>닫기</button></div></div></div>`);$('#mbox').classList.add('wide');return}
+ const L=artList(),w=L[lbI];modal(`<div class="lb"><img src="images/${w.id}.jpg" alt="${esc(w.name)} 작품"><div class="row between" style="margin-top:12px"><div><span class="aw ${w.award}">${w.award}</span> <b style="font-size:18px">${esc(w.name)}</b> <span class="meta">${esc(w.church)}</span></div><div class="row"><button class="btn sm ghost" data-a="lbMove" data-id="-1" aria-label="이전 작품">‹</button><span class="meta">${lbI+1} / ${L.length}</span><button class="btn sm ghost" data-a="lbMove" data-id="1" aria-label="다음 작품">›</button><button class="btn sm" data-close>닫기</button></div></div></div>`);$('#mbox').classList.add('wide')}
+const evIcon=n=>`<span class="ico">${/사생|그림/.test(n)?'<svg width="30" height="30" viewBox="0 0 30 30"><path d="M5 25l4-1 14-14-3-3L6 21z" fill="#ffc63d"/><path d="M20 7l3 3" stroke="#f2553c" stroke-width="3"/></svg>':/필사/.test(n)?'<svg width="30" height="30" viewBox="0 0 30 30"><path d="M4 7c4-2 8-2 11 1v17c-3-3-7-3-11-1z" fill="#1f6fe0"/><path d="M26 7c-4-2-8-2-11 1v17c3-3 7-3 11-1z" fill="#ffc63d"/></svg>':/찬양|율동|고사|암송/.test(n)?'<svg width="30" height="30" viewBox="0 0 30 30"><path d="M12 6v14" stroke="#1f6fe0" stroke-width="3"/><path d="M12 6l10-2v13" stroke="#1f6fe0" stroke-width="3" fill="none"/><circle cx="9" cy="21" r="4" fill="#f2553c"/><circle cx="19" cy="18" r="4" fill="#ffc63d"/></svg>':'<svg width="30" height="30" viewBox="0 0 30 30"><path d="M15 3l3.5 8 8.5.8-6.4 5.6 1.9 8.4L15 21.4 7.5 25.8l1.9-8.4L3 11.8l8.5-.8z" fill="#ffc63d"/></svg>'}</span>`;
+V.events=()=>{
+ const ys=[...S.years].sort((a,b)=>b.year-a.year);if(!ev.year&&ys[0])ev.year=ys[0].year;
+ const y=S.years.find(x=>x.year===ev.year);const e=y&&(y.events.find(x=>x.id===+ev.event));
+ return `<div class="row between"><h2>주요행사</h2>${isAdmin()?'<button class="btn sm" data-a="addYear">+ 연도 추가</button>':''}</div>
+ <div class="row" style="margin-bottom:18px">${ys.map(x=>`<button class="chip ${x.year===ev.year?'on':''}" data-a="pickYear" data-id="${x.year}">${x.year}년</button>`).join('')}</div>
+ ${y?`<div class="grid">${y.events.map(x=>`<button class="card ev ${e&&x.id===e.id?'on':''}" data-a="pickEv" data-id="${x.id}">${evIcon(x.name)}<h3 style="margin:4px 0 0">${esc(x.name)}</h3><span class="meta">사진 ${x.photos.length+artOf(y.year,x).length}장 · 동영상 ${x.videos.length}개</span></button>`).join('')}${isAdmin()?`<button class="card ev" data-a="addEvent" style="border-style:dashed;justify-content:center;align-items:center;color:var(--sea);font-weight:700">+ ${y.year}년 행사 추가</button>`:''}</div>`:'<div class="empty">등록된 연도가 없어요</div>'}
+ ${e?`<section style="margin-top:28px"><div class="crumb">${y.year}년 · ${esc(e.name)}</div><div class="row between"><h2>${esc(e.name)}</h2>${isAdmin()?`<div class="row"><button class="btn sm ghost" data-a="renameEv">이름 수정</button><button class="btn sm del" data-a="delEv">행사 삭제</button></div>`:''}</div>
+ <div class="row" style="margin:10px 0 16px"><button class="chip ${ev.tab==='photo'?'on':''}" data-a="tab" data-id="photo">사진</button><button class="chip ${ev.tab==='video'?'on':''}" data-a="tab" data-id="video">동영상</button></div>
+ ${ev.tab==='photo'?`${artOf(y.year,e).length?gallery(e)+'<h3>행사 사진</h3>':''}${isAdmin()?`<label class="btn sm" style="display:inline-flex;margin-bottom:12px">+ 사진 올리기<input type="file" accept="image/*" multiple id="upPhoto" hidden></label>`:''}<div class="photos">${e.photos.map((p,i)=>`<div class="ph"><img loading="lazy" src="${esc(p.url)}" alt="${esc(e.name)} 사진 ${i+1}">${isAdmin()?`<button class="btn sm del x" data-a="delPhoto" data-id="${p.id}">삭제</button>`:''}</div>`).join('')}</div>${e.photos.length?'':`<div class="empty">${artOf(y.year,e).length?'행사 현장 사진이 아직 없어요':'아직 올라온 사진이 없어요'}</div>`}`
+ :`${isAdmin()?`<button class="btn sm" data-a="addVideo" style="margin-bottom:12px">+ 동영상 링크 추가</button>`:''}<div class="grid">${e.videos.map((v,i)=>`<div class="card"><div class="row"><svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#f2553c"/><path d="M16 12l12 8-12 8z" fill="#fff"/></svg><div><b>${esc(v.title)}</b><div class="meta"><a href="${esc(v.url)}" target="_blank" rel="noopener">영상 보러 가기</a></div></div></div>${isAdmin()?`<button class="btn sm del" style="margin-top:10px" data-a="delVideo" data-id="${v.id}">삭제</button>`:''}</div>`).join('')}</div>${e.videos.length?'':'<div class="empty">아직 올라온 동영상이 없어요</div>'}`}
+ </section>`:(y?'<p class="note" style="margin-top:14px">행사를 누르면 사진과 동영상을 볼 수 있어요.</p>':'')}`};
+const needLogin=t=>`<div class="card" style="max-width:520px"><h2>${t}</h2><p>로그인한 회원만 참여할 수 있어요.</p><div class="row"><a class="btn" href="#login">로그인</a><a class="btn ghost" href="#signup">회원가입</a></div></div>`;
+const SV=[
+ {name:'사생대회',items:['그림 주제(성경 이야기 등)가 아이들 눈높이에 맞았다','장소와 시설이 쾌적하고 안전했다','그리기 시간이 충분했다','연령·부서별 부문 구분(재료, 양식, 작품 크기 외)이 적절했다','심사 기준과 시상이 공정했다','사전 안내(일정·준비물)가 충분했다'],
+  picks:[{q:'다음 대회 장소로 어디가 좋을까요?',o:['야외(공원 등)','실내(교회·강당)','상관없음']},{q:'그리기 시간은 어땠나요?',o:['짧았다','적당했다','길었다']}]},
+ {name:'성경필사대회',items:['필사 범위(본문)가 적절했다','필사 기간이 충분했다','제출 방법과 절차가 편리했다','필사가 말씀을 묵상하는 데 도움이 되었다','심사 기준과 시상이 공정했다','사전 안내가 충분했다'],
+  picks:[{q:'필사 분량은 어땠나요?',o:['적었다','적당했다','많았다']},{q:'주로 어디에서 필사했나요?',o:['가정에서 가족과 함께','가정에서 혼자','교회에서']}]},
+ {name:'성경고사·암송·찬양·율동대회',noAgain:1,multi:{q:'참여한 종목 (여러 개 선택)',o:['성경고사','암송','찬양','율동']},
+  items:['성경고사 출제 범위와 난이도가 적절했다','총회제공 예상문제가 도움이 되었나요?','암송 구절 분량이 적절했다','찬양·율동 곡 선정 기준이 적절했다','준비 기간이 충분했다','대회 순서와 진행 시간이 적절했다','심사 기준과 시상이 공정했다'],itk:['성경고사','성경고사','암송','찬양 율동'],
+  picks:[{q:'성경고사 난이도는 어땠나요?',o:['쉬웠다','적당했다','어려웠다'],k:'성경고사'},...['성경고사','암송','찬양','율동'].map(x=>({q:`[${x}] 전국대회(27년 1월 21일(목), 서울 사랑의 교회)에 참석할 의향이 있으신가요?`,o:['있다','고민 중이다','없다'],k:x})),{q:'전체 진행 시간은 어땠나요?',o:['짧았다','적당했다','길었다']}]}];
+const SEM=['교사 세미나·교사 강습회'],SEMI=['배운 내용을 우리 교회(부서)에서 활용할 수 있었다','참석 후 개인적인 은혜와 도전이 있었다','강의 시간과 일정이 적절했다','장소와 진행이 원활했다'];
+const PART=['참가자(어린이·학생)','인솔·지도 교사','교역자','학부모(동행·응원)','진행 봉사자'],AGAIN=['꼭 했으면 좋겠다','했으면 좋겠다','잘 모르겠다','안 해도 될 것 같다'];
+const NEWEV=['성경캠프·수련회','교사 세미나·연수','연합 체육대회','연합 예배·찬양집회','성탄 축제','기타'],CH=['홈페이지','카카오톡','교회 광고·주보','노회 공문'];
+const isLeader=u=>['목회자','부서사역자','교사'].includes(u.role),isParent=u=>u.role==='학부모';
+const PCNT=['1~5명','6~10명','11~20명','21명 이상','참가 학생 없음'],PWHY=['일정이 맞지 않았다','준비 기간이 부족했다','학생들의 관심이 적었다','지도할 교사가 부족했다','이동·교통이 어려웠다','홍보·안내가 부족했다','참여도가 낮지 않았다'];
+const KAGAIN=['또 하고 싶다고 했다','그저 그랬다','별로 하고 싶어 하지 않았다'];
+const Q=(t,inner,id='')=>`<div class="q" ${id?`id="${id}"`:''}><div class="qt">${t}</div>${inner}</div>`;
+const scale=(n,lo='매우 아쉬움',hi='매우 좋음')=>`<div class="rate radios">${[1,2,3,4,5].map(v=>`<label><input type="radio" name="${n}" value="${v}">${v}</label>`).join('')}</div><div class="note">1 ${lo} · 5 ${hi}</div>`;
+const one=(n,o)=>`<div class="radios">${o.map(x=>`<label><input type="radio" name="${n}" value="${esc(x)}">${esc(x)}</label>`).join('')}</div>`;
+const many=(n,o)=>`<div class="radios">${o.map(x=>`<label><input type="checkbox" name="${n}" value="${esc(x)}">${esc(x)}</label>`).join('')}</div>`;
+const txt=(n,ph)=>`<textarea name="${n}" placeholder="${ph}"></textarea>`;
+V.survey=pu=>{
+ const u=pu||user();if(!u)return `<div class="crumb">설문조사&amp;문의하기</div>`+needLogin('설문조사');
+ if(!pu&&isAdmin())return V.admin();
+ const L=isLeader(u),P=isParent(u);
+ return `<div class="crumb">설문조사&amp;문의하기</div><h2>2026년 연합회 행사 설문조사</h2>
+ <p>올해 함께한 행사에 대한 생각을 들려주세요. 교역자, 교사, 참가자, 학부모님의 의견은 운영진만 보며, 내년 행사 준비와 개선에 그대로 참고합니다. 약 5분 걸려요.</p><p class="note">${esc(u.name)}님 · ${esc(u.church)} · ${esc(roleText(u))}</p>
+ <form class="f sv" id="sv">
+ <section class="sec">${Q('1. 2026년 행사 중 참여한 행사를 모두 골라 주세요 <span class="req">필수</span>',`<div class="radios">${SV.map((s,i)=>`<label><input type="checkbox" name="ev" value="${i}" data-sec="${i}">${esc(s.name)}</label>`).join('')}</div>${L?`<div class="qt" style="margin-top:8px">교사 행사 (교역자·교사)</div><div class="radios">${SEM.map((n,j)=>`<label><input type="checkbox" name="sem" value="${j}" data-sec="s${j}">${n}</label>`).join('')}</div>`:''}<div class="note">고른 행사의 질문이 아래에 나타나요.</div>`)}</section>
+ ${SV.map((s,i)=>`<section class="sec ev-sec" id="sec${i}" hidden><h3>${esc(s.name)}</h3>
+  ${Q('어떤 자격으로 참여하셨나요?',one('p'+i,PART))}
+  ${s.multi?Q(s.multi.q,many('m'+i,s.multi.o)+'<div class="note">고른 종목에 해당하는 질문만 아래에 나타나요.</div>'):''}
+  ${Q('전체 만족도 <span class="req">필수</span>',scale('o'+i),'qo'+i)}
+  ${Q('항목별로 얼마나 그렇다고 느끼셨나요?',`<div class="items">${s.items.map((t,j)=>`<div class="it" ${s.itk&&s.itk[j]?`data-k="${s.itk[j]}" hidden`:''}><span>${esc(t)}</span>${scale(`i${i}_${j}`,'전혀 아니다','매우 그렇다')}</div>`).join('')}</div>`)}
+  ${s.picks.map((k,j)=>k.k?`<div data-k="${k.k}" hidden>${Q(esc(k.q),one(`k${i}_${j}`,k.o))}</div>`:Q(esc(k.q),one(`k${i}_${j}`,k.o))).join('')}
+  ${s.noAgain?'':Q('내년에도 이 행사가 열렸으면 하나요? <span class="req">필수</span>',one('a'+i,AGAIN),'qa'+i)}
+  ${Q('좋았던 점',txt('g'+i,''))}
+  ${Q('부족했던 점, 불편했던 점',txt('b'+i,''))}
+  ${Q('내년에 이렇게 바뀌면 좋겠어요',txt('d'+i,''))}
+  ${L?`<div class="box"><div class="qt">교역자·교사 추가 질문</div>${Q('교회에서 이 행사를 준비하는 부담은 어느 정도였나요?',scale('l'+i,'매우 가벼웠다','매우 부담됐다'))}${Q('우리 교회 학생들의 참여도는 어땠나요?',scale('pr'+i,'매우 낮았다','매우 높았다'))}${Q('우리 교회에서 참가한 학생 수',one('pc'+i,PCNT))}${Q('참여가 저조했다면 그 이유는 무엇인가요? (여러 개 선택)',many('pw'+i,PWHY))}${Q('학생 참여를 높이려면 무엇이 필요할까요?',txt('pi'+i,''))}${Q('연합회 운영진에게 바라는 지원',txt('s'+i,''))}</div>`:''}
+  ${P?`<div class="box"><div class="qt">학부모 추가 질문</div>${Q('자녀가 이 행사를 얼마나 즐거워했나요?',scale('j'+i,'전혀 즐거워하지 않았다','매우 즐거워했다'))}${Q('행사 후 자녀의 반응은 어땠나요?',one('ka'+i,KAGAIN))}${Q('자녀가 신앙적으로 도움을 받았다고 느끼셨나요?',scale('jf'+i,'전혀 아니다','매우 그렇다'))}${Q('자녀가 특히 좋아했던 순간이나 집에서 들려준 이야기',txt('jm'+i,''))}</div>`:''}
+ </section>`).join('')}
+ ${L?SEM.map((n,j)=>`<section class="sec ev-sec" id="secs${j}" hidden><h3>${n} <span class="note">교역자·교사</span></h3>
+  ${Q('전체 만족도 <span class="req">필수</span>',scale('so'+j),'qso'+j)}
+  ${Q('강사에 대한 만족도 (전문성, 강의력 등)',scale('sl'+j))}
+  ${Q('강의 내용에 대한 만족도',scale('sc'+j))}
+  ${Q('항목별로 얼마나 그렇다고 느끼셨나요?',`<div class="items">${SEMI.map((t,k)=>`<div class="it"><span>${t}</span>${scale(`si${j}_${k}`,'전혀 아니다','매우 그렇다')}</div>`).join('')}</div>`)}
+  ${Q('강사와 강의에 대한 의견',txt('st'+j,''))}
+  ${Q('교회(부서)에서 실제로 활용한 내용이나 달라진 점',txt('su'+j,''))}
+  ${Q('개선할 점',txt('sb'+j,''))}
+  ${Q('다음에 듣고 싶은 강의 주제',txt('sw'+j,''))}
+  ${Q('추천하고 싶은 강사',txt('sr'+j,''))}
+ </section>`).join(''):''}
+ <section class="sec"><h3>연합회 활동 전반</h3>
+  ${Q('올해 남노회 주일학교 연합회 활동 전반에 얼마나 만족하셨나요? <span class="req">필수</span>',scale('go'),'qgo')}
+  ${Q('내년에 새로 열렸으면 하는 행사가 있나요?',txt('gnx',''))}
+  ${Q('연합회 소식은 어떤 방법으로 받는 게 편하세요? (여러 개 선택)',many('gc',CH))}
+  ${Q('운영진에게 하고 싶은 말, 자유 의견',txt('gf','무엇이든 편하게 남겨 주세요'))}
+ </section>
+ <section class="sec">${nameChoice()}</section><button class="btn">설문 제출</button></form>`};
+
+V.inquiry=()=>{
+ const u=user();
+ return `<div class="crumb">설문조사&amp;문의하기</div><h2>문의하기</h2>${u&&!isAdmin()?`<form class="f card" id="iq" style="margin-bottom:20px"><label>제목<input name="title" required></label><label>내용<textarea name="body" required></textarea></label>${nameChoice()}<button class="btn">문의 남기기</button></form>`:(!u?`<p><a href="#login">로그인</a> 후 문의를 남길 수 있어요.</p>`:'')}
+ ${[...S.inquiries].reverse().map(q=>`<article class="post"><h3>${esc(q.title)}</h3><div class="meta">${esc(q.by)} · ${q.date}</div><div class="body">${esc(q.body)}</div>${q.reply?`<div class="reply"><span class="badge">답변</span> ${esc(q.reply)}</div>`:''}${isAdmin()?`<div class="row" style="margin-top:8px"><button class="btn sm" data-a="reply" data-id="${q.id}">${q.reply?'답변 수정':'답변 달기'}</button><button class="btn sm del" data-a="delIq" data-id="${q.id}">삭제</button></div>`:''}</article>`).join('')||'<div class="empty">아직 문의가 없어요</div>'}`};
+V.login=()=>`<h2>로그인</h2><form class="f card" id="lg" style="max-width:440px"><label>전화번호<input name="phone" inputmode="tel" required></label><label>비밀번호<input name="pw" type="password" required></label><button class="btn">로그인</button><p class="note">처음이신가요? <a href="#signup">회원가입</a></p><p class="note">비밀번호를 잊으셨다면 '문의하기'에 남기시거나 각 교회 임원을 통해 연락해 주세요.</p></form>`;
+const userForm=(id,edit)=>`<form class="f" id="${id}">
+ <label>이름<input name="name" required></label><label>닉네임<input name="nick" required placeholder="활동할 때 보일 이름"></label>
+ <label>전화번호<input name="phone" inputmode="tel" required placeholder="010-0000-0000"></label><label>${edit?'새 비밀번호 <span class="note">바꿀 때만 입력</span>':'비밀번호'}<input name="pw" type="password" ${edit?'':'required'} minlength="6" placeholder="6자 이상"></label>
+ <div><div style="font-weight:500;font-size:15px;margin-bottom:6px">성별</div><div class="radios"><label><input type="radio" name="sex" value="남" required>남</label><label><input type="radio" name="sex" value="여">여</label></div></div>
+ <label>나이<select name="age" required><option value="">선택</option>${AGES.map(a=>`<option>${a}</option>`).join('')}</select></label>
+ <label>소속교회<select name="church" required><option value="">남노회 소속교회 선택</option>${[...S.churches].sort((a,b)=>a.name.localeCompare(b.name,'ko')).map(c=>`<option>${esc(c.name)}</option>`).join('')}</select></label>
+ <label>직분<select name="role" id="role" required><option value="">선택</option><option>목회자</option><option>부서사역자</option><option>교사</option><option>학부모</option><option>참가자(학생)</option></select></label>
+ <div id="roleBox"></div>${edit?'':CONSENT}<button class="btn">${edit?'정보 수정':'가입하기'}</button></form>`;
+const CONSENT=`<div class="box consent"><b>개인정보 수집·이용 동의 (필수)</b>
+ <ul><li><b>수집 항목</b>: 이름, 닉네임, 전화번호, 성별, 나이대, 소속교회, 직분(섬기는 부서, 자녀 학년)</li>
+ <li><b>이용 목적</b>: 회원 확인, 설문·문의 응답 확인과 연락, 연합회 행사 안내</li>
+ <li><b>보관 기간</b>: 회원탈퇴 시까지. 탈퇴하면 바로 삭제되며, 설문 응답은 이름 없이 통계로만 남습니다.</li>
+ <li>동의하지 않으면 회원가입을 할 수 없지만, 홈페이지 내용은 그대로 볼 수 있어요.</li></ul>
+ <label class="ck"><input type="checkbox" name="agree" required> 위 내용에 동의합니다</label>
+ <label class="ck"><input type="checkbox" name="age14" required> 만 14세 이상이거나, 만 14세 미만인 경우 보호자의 동의를 받았습니다</label></div>`;
+V.signup=()=>`<h2>회원가입</h2>${userForm('su',false)}`;
+V.mypage=()=>{const u=user();if(!u)return needLogin('마이페이지');if(isAdmin())return V.admin();
+ const mySv=S.surveys.filter(x=>x.uid===u.id).length,myIq=S.inquiries.filter(x=>x.uid===u.id);
+ return `<h2>마이페이지</h2><div class="grid" style="margin-bottom:24px"><div class="card"><div class="meta">회원 정보</div><h3>${esc(u.name)} <span class="note">(${esc(u.nick)})</span></h3><div>${esc(u.church)} · ${esc(roleText(u))}</div><div class="meta">${esc(u.phone)} · ${u.sex} · ${u.age} · 가입일 ${u.joined}</div></div>
+ <div class="card"><div class="meta">나의 활동</div><h3>설문 ${mySv}건 · 문의 ${myIq.length}건</h3><div class="row"><a class="btn sm ghost" href="#survey">설문 참여</a><a class="btn sm ghost" href="#inquiry">문의하기</a></div></div></div>
+ <section class="card" style="margin-bottom:24px"><h3>정보 수정</h3>${userForm('mp',true)}</section>
+ <section class="card"><h3>회원탈퇴</h3><p>탈퇴하면 회원 정보와 내가 남긴 문의글이 삭제됩니다. 설문 응답은 행사 개선 통계를 위해 이름 없이 '탈퇴 회원'으로 남습니다.</p><button class="btn del" data-a="withdraw">회원탈퇴</button></section>`};
+function fillUser(u){const f=$('#mp');if(!f)return;['name','nick','phone','age','church','role'].forEach(k=>f.elements[k].value=u[k]||'');
+ const sx=f.querySelector(`[name=sex][value="${u.sex}"]`);if(sx)sx.checked=true;$('#roleBox').innerHTML=roleBox(u.role);
+ if(f.elements.sub)f.elements.sub.value=u.sub;if(u.role==='학부모'){f.elements.kids.value=u.kids.length;$('#kidG').innerHTML=kidRows(u.kids.length);u.kids.forEach((g,i)=>f.elements['kid'+i].value=g)}}
+function roleBox(r){
+ const sel=(n,o)=>`<select name="${n}" required><option value="">선택</option>${o.map(x=>`<option>${x}</option>`).join('')}</select>`;
+ if(r==='목회자')return `<div class="box"><label>구분${sel('sub',['담임','부교역자'])}</label></div>`;
+ if(r==='부서사역자'||r==='교사'||r==='참가자(학생)')return `<div class="box"><label>섬기는 부서${sel('sub',D)}</label></div>`;
+ if(r==='학부모')return `<div class="box"><label>자녀 수<select name="kids" id="kids">${[1,2,3,4,5].map(n=>`<option>${n}</option>`).join('')}</select></label><div id="kidG" style="display:grid;gap:10px">${kidRows(1)}</div></div>`;
+ return ''}
+const kidRows=n=>Array.from({length:n},(_,i)=>`<label>${i+1}째 자녀 학년<select name="kid${i}" required><option value="">선택</option>${G.map(g=>`<option>${g}</option>`).join('')}</select></label>`).join('');
+const roleText=u=>u.role==='학부모'?`학부모 (자녀 ${u.kids.join(', ')})`:`${u.role} · ${u.sub}`;
+const avgOf=a=>{a=a.filter(Boolean);return a.length?a.reduce((x,y)=>x+y,0)/a.length:0};
+const cntOf=(a,o)=>o.map(x=>a.filter(v=>v===x).length);
+const bars=(o,c,t)=>o.map((l,k)=>`<div class="bar"><span>${esc(l)}</span><div class="bt"><i style="width:${t?c[k]/t*100:0}%"></i></div><b>${c[k]}</b></div>`).join('');
+const sbar=(l,v)=>`<div class="bar"><span>${esc(l)}</span><div class="bt"><i style="width:${v/5*100}%"></i></div><b>${v?v.toFixed(1):'-'}</b></div>`;
+const texts=(t,rs,k)=>{const a=rs.filter(r=>r[k]);return a.length?`<details><summary>${t} (${a.length})</summary><ul>${a.map(r=>`<li>${esc(r[k])} <span class="note">— ${esc(r.by)}, ${esc(r.church||'')} ${esc(r.role)}</span></li>`).join('')}</ul></details>`:''};
+function svReport(){
+ if(!S.surveys.length)return '<div class="empty">아직 응답이 없어요</div>';
+ return SV.map(s=>{const rs=S.surveys.flatMap(x=>x.answers.filter(a=>a.ev===s.name).map(a=>({...a,by:x.by,role:x.role,church:x.church})));
+  if(!rs.length)return `<div class="rep"><h3>${esc(s.name)}</h3><div class="note">응답 없음</div></div>`;
+  return `<div class="rep"><div class="row between"><h3>${esc(s.name)}</h3><span>응답 ${rs.length}건 · 전체 만족도 <b>${avgOf(rs.map(r=>r.overall)).toFixed(1)}</b> / 5</span></div>
+  <div class="rgrid"><div><div class="qt">항목별 평균</div>${s.items.map((t,j)=>sbar(t,avgOf(rs.map(r=>r.items[j])))).join('')}${rs.some(r=>r.load)?sbar('준비 부담 (교역자·교사, 높을수록 부담)',avgOf(rs.map(r=>r.load))):''}${rs.some(r=>r.pr)?sbar('교회 학생 참여도 (교역자·교사)',avgOf(rs.map(r=>r.pr))):''}${rs.some(r=>r.joy)?sbar('자녀가 즐거워한 정도 (학부모)',avgOf(rs.map(r=>r.joy))):''}${rs.some(r=>r.jf)?sbar('자녀의 신앙적 유익 (학부모)',avgOf(rs.map(r=>r.jf))):''}</div>
+  <div>${s.noAgain?'':`<div class="qt">내년에도 개최</div>${bars(AGAIN,cntOf(rs.map(r=>r.again),AGAIN),rs.length)}`}<div class="qt">참여 자격</div>${bars(PART,cntOf(rs.map(r=>r.part),PART),rs.length)}
+  ${s.multi?`<div class="qt">${esc(s.multi.q)}</div>${bars(s.multi.o,cntOf(rs.flatMap(r=>r.multi),s.multi.o),rs.length)}`:''}
+  ${s.picks.map((k,j)=>`<div class="qt">${esc(k.q)}</div>${bars(k.o,cntOf(rs.map(r=>r.picks[j]),k.o),rs.filter(r=>r.picks[j]).length)}`).join('')}
+  ${rs.some(r=>r.pc)?`<div class="qt">교회별 참가 학생 수 (교역자·교사)</div>${bars(PCNT,cntOf(rs.map(r=>r.pc),PCNT),rs.filter(r=>r.pc).length)}`:''}
+  ${rs.some(r=>r.pw&&r.pw.length)?`<div class="qt">참여 저조 이유 (교역자·교사)</div>${bars(PWHY,cntOf(rs.flatMap(r=>r.pw||[]),PWHY),rs.filter(r=>r.pr).length)}`:''}
+  ${rs.some(r=>r.ka)?`<div class="qt">행사 후 자녀 반응 (학부모)</div>${bars(KAGAIN,cntOf(rs.map(r=>r.ka),KAGAIN),rs.filter(r=>r.ka).length)}`:''}</div></div>
+  ${texts('좋았던 점',rs,'good')}${texts('부족했던 점',rs,'bad')}${texts('개선 제안',rs,'idea')}${texts('운영진에게 바라는 지원',rs,'support')}${texts('학생 참여를 높이려면',rs,'pi')}${texts('자녀가 좋아했던 순간',rs,'jm')}</div>`}).join('')+
+ SEM.map(n=>{const rs=S.surveys.flatMap(x=>(x.sem||[]).filter(a=>a.ev===n).map(a=>({...a,by:x.by,role:x.role,church:x.church})));
+  if(!rs.length)return `<div class="rep"><h3>${n} <span class="note">교역자·교사</span></h3><div class="note">응답 없음</div></div>`;
+  return `<div class="rep"><div class="row between"><h3>${n} <span class="note">교역자·교사</span></h3><span>응답 ${rs.length}건 · 전체 만족도 <b>${avgOf(rs.map(r=>r.overall)).toFixed(1)}</b> / 5</span></div>
+  <div class="rgrid"><div><div class="qt">만족도 평균</div>${sbar('강사 (전문성, 강의력 등)',avgOf(rs.map(r=>r.lecR)))}${sbar('강의 내용',avgOf(rs.map(r=>r.conR)))}</div><div><div class="qt">항목별 평균</div>${SEMI.map((t,k)=>sbar(t,avgOf(rs.map(r=>r.items[k])))).join('')}</div></div>
+  ${texts('강사와 강의 의견',rs,'lect')}${texts('활용한 내용·달라진 점',rs,'use')}${texts('개선할 점',rs,'bad')}${texts('듣고 싶은 강의 주제',rs,'want')}${texts('추천 강사',rs,'rec')}</div>`}).join('')+
+ (()=>{const g=S.surveys.map(x=>({...x.general,by:x.by,role:x.role}));return `<div class="rep"><div class="row between"><h3>연합회 활동 전반</h3><span>만족도 <b>${avgOf(g.map(r=>r.overall)).toFixed(1)}</b> / 5</span></div><div class="rgrid"><div><div class="qt">편한 소식 채널</div>${bars(CH,cntOf(g.flatMap(r=>r.ch),CH),g.length)}</div></div>${texts('새로 열렸으면 하는 행사',g,'newEtc')}${texts('자유 의견',g,'free')}</div>`})()}
+let pv='교사';
+const PVR={'목회자':{role:'목회자',sub:'담임'},'교사':{role:'교사',sub:'유년부'},'학부모':{role:'학부모',kids:['유치','초등학생']},'참가자(학생)':{role:'참가자(학생)',sub:'초등부'}};
+V.preview=()=>{if(!isAdmin())return needLogin('설문지 미리보기');
+ const u={id:'pv',name:'홍길동',nick:'미리보기',church:'사랑교회',sub:'',kids:[],...PVR[pv]};
+ return `<div class="card" style="margin-bottom:20px;background:var(--sun);border:0;color:#3a2a00"><div class="row between"><h3 style="margin:0">설문지 미리보기</h3><a class="btn sm" href="#admin">관리자 페이지로</a></div>
+ <p style="margin:6px 0 12px">회원이 보는 화면 그대로예요. 직분을 바꾸면 그 직분에만 나오는 추가 질문을 확인할 수 있어요. 여기서는 제출해도 저장되지 않아요.</p>
+ <div class="row">${Object.keys(PVR).map(k=>`<button class="chip ${k===pv?'on':''}" data-a="pvRole" data-id="${k}">${k==='목회자'||k==='교사'?k+' (추가 질문)':k==='학부모'?'학부모 (추가 질문)':k}</button>`).join('')}<button class="chip" data-a="pvAll">행사·종목 모두 펼치기</button></div></div>${V.survey(u)}`};
+V.admin=()=>{
+ if(!isAdmin())return needLogin('관리자 페이지');
+ return `<h2>관리자 페이지</h2><p class="note">각 메뉴 화면에서도 수정·삭제 버튼으로 바로 고칠 수 있어요.</p>
+ <div class="row" style="margin:12px 0 24px"><a class="btn sm" href="#news">소식 쓰기</a><a class="btn sm" href="#churches">소속교회 관리</a><a class="btn sm" href="#staff">임원진 관리</a><a class="btn sm" href="#events">행사·사진 관리</a><a class="btn sm" href="#inquiry">문의 답변</a><a class="btn sm sun" href="#preview">설문지 미리보기</a></div>
+ <section class="card" style="margin-bottom:18px"><div class="row between"><h3>설문 결과</h3><span>응답 ${S.surveys.length}건</span></div>${svReport()}</section>
+ <section class="card"><h3>회원 목록 (${S.users.length}명)</h3>${S.users.length?`<table class="stack"><thead><tr><th>이름</th><th>닉네임</th><th>전화번호</th><th>성별/나이</th><th>소속교회</th><th>직분</th><th>가입일</th></tr></thead><tbody>${S.users.map(u=>`<tr><td data-l="이름">${esc(u.name)}</td><td data-l="닉네임">${esc(u.nick)}</td><td data-l="전화번호">${esc(u.phone)}</td><td data-l="성별/나이">${u.sex} · ${u.age}</td><td data-l="소속교회">${esc(u.church)}</td><td data-l="직분">${esc(roleText(u))}</td><td data-l="가입일">${u.joined}</td></tr>`).join('')}</tbody></table>`:'<div class="empty">아직 가입한 회원이 없어요</div>'}</section>`};
+
+const HERO=`<section class="hero"><div class="wrap hgrid"><div><h1>함께 자라는<br>남노회 주일학교</h1><div class="acts"><a class="btn sun" href="#events">주요행사 보기</a><a class="btn ghost" href="#signup">회원가입</a></div></div>
+<svg class="scene" viewBox="0 0 600 380" role="img" aria-label="스케치북과 크레파스, 성경과 필사 노트가 놓인 책상"><defs><linearGradient id="wl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dcebff"/><stop offset="1" stop-color="#eef5ff"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8b67c"/><stop offset="1" stop-color="#c98c4f"/></linearGradient><linearGradient id="ws" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8cc4ff"/><stop offset="1" stop-color="#cfe6ff"/></linearGradient><filter id="sh" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#5a3a1a" flood-opacity=".28"/></filter>
+<g id="cr"><rect width="44" height="9" rx="2"/><path d="M44 0l11 4.5L44 9z"/><rect x="8" width="22" height="9" fill="#fff" opacity=".35"/></g></defs>
+<rect width="600" height="380" fill="url(#wl)"/>
+<g><rect x="38" y="24" width="150" height="120" rx="6" fill="#fff"/><rect x="48" y="34" width="130" height="100" rx="3" fill="url(#ws)"/><circle cx="150" cy="62" r="14" fill="#ffc63d"/><ellipse cx="88" cy="70" rx="24" ry="8" fill="#fff"/><path d="M48 118c30-14 70-14 130-4v20H48z" fill="#86cf72"/><path d="M113 34v100M48 84h130" stroke="#fff" stroke-width="6"/></g>
+<g transform="translate(240 166)"><path d="M-14 0h28l-4 30h-20z" fill="#f2553c"/><path d="M0 0c-2-14 2-26-1-38" stroke="#4fa85a" stroke-width="3" fill="none"/><path d="M-1-26c-12-8-20-2-20-2s8 8 20 2M-1-34c10-10 20-4 20-4s-8 10-20 4" fill="#6cc56a"/></g>
+<g class="note"><g fill="#1f6fe0"><path d="M430 70v38" stroke="#1f6fe0" stroke-width="3"/><ellipse cx="424" cy="110" rx="8" ry="6"/><path d="M430 70q14 4 14 18" stroke="#1f6fe0" stroke-width="3" fill="none"/></g>
+<g fill="#f2553c"><path d="M500 52v36M524 46v36M500 52l24-6" stroke="#f2553c" stroke-width="3" fill="none"/><ellipse cx="494" cy="90" rx="8" ry="6"/><ellipse cx="518" cy="84" rx="8" ry="6"/></g>
+<g fill="#ffb100"><path d="M556 112v28" stroke="#ffb100" stroke-width="3"/><ellipse cx="551" cy="142" rx="7" ry="5"/></g></g>
+<path d="M0 196H600V380H0z" fill="url(#dk)"/><rect y="192" width="600" height="8" fill="#b7793f"/><path d="M0 230h600M0 290h600M0 350h600" stroke="#d29a5c" stroke-width="1.5" opacity=".6"/>
+<g transform="translate(46 200) rotate(-6)" filter="url(#sh)"><rect width="236" height="156" rx="4" fill="#fff"/><rect y="0" width="236" height="14" fill="#f2553c"/>
+<g fill="#5b6782"><circle cx="20" cy="7" r="3"/><circle cx="40" cy="7" r="3"/><circle cx="60" cy="7" r="3"/><circle cx="80" cy="7" r="3"/><circle cx="100" cy="7" r="3"/><circle cx="120" cy="7" r="3"/><circle cx="140" cy="7" r="3"/><circle cx="160" cy="7" r="3"/><circle cx="180" cy="7" r="3"/><circle cx="200" cy="7" r="3"/><circle cx="220" cy="7" r="3"/></g>
+<circle cx="196" cy="44" r="16" fill="#ffc63d"/><path d="M196 20v-4M220 44h4M213 27l3-3M213 61l3 3" stroke="#ffc63d" stroke-width="3" stroke-linecap="round"/>
+<path d="M10 138c40-30 120-36 216-14v24H10z" fill="#86cf72"/>
+<g transform="translate(58 66)"><rect y="22" width="46" height="38" fill="#fff" stroke="#5b6782" stroke-width="2"/><path d="M-6 24L23 0l29 24z" fill="#f2553c"/><path d="M23 0v-18M16-11h14" stroke="#ffb100" stroke-width="3" stroke-linecap="round"/><rect x="16" y="38" width="14" height="22" rx="7" fill="#1f6fe0"/></g>
+<g transform="translate(140 100)"><circle r="8" fill="#f6c9a0"/><path d="M-10 10h20l4 26h-28z" fill="#ffc63d"/><g transform="translate(30 2)"><circle r="8" fill="#e8b48a"/><path d="M-10 10h20l4 26h-28z" fill="#1f6fe0"/></g><path d="M10 20h12" stroke="#5b6782" stroke-width="3" stroke-linecap="round"/></g></g>
+<g filter="url(#sh)"><g transform="translate(286 296)"><rect width="72" height="48" rx="4" fill="#ffc63d"/><g transform="translate(6 -14)"><rect width="9" height="22" fill="#f2553c"/><rect x="12" width="9" height="28" fill="#1f6fe0" y="-6"/><rect x="24" width="9" height="20" fill="#4fa85a" y="2"/><rect x="36" width="9" height="26" fill="#8e5cd9" y="-4"/><rect x="48" width="9" height="22" fill="#ff8a3d"/></g><rect y="14" width="72" height="34" rx="4" fill="#ffd25c"/><path d="M14 31h44" stroke="#c98c00" stroke-width="3" stroke-linecap="round"/></g>
+<use href="#cr" fill="#f2553c" transform="translate(272 362) rotate(-18)"/><use href="#cr" fill="#1f6fe0" transform="translate(206 356) rotate(8)"/><use href="#cr" fill="#4fa85a" transform="translate(372 356) rotate(-160)"/></g>
+<g transform="translate(372 206)" filter="url(#sh)"><path d="M0 10L100 0l100 10v78L100 80 0 88z" fill="#7a2e2e"/><path d="M6 12q46-10 94-4v70q-48-6-94 4z" fill="#fffaf0"/><path d="M194 12q-46-10-94-4v70q48-6 94 4z" fill="#fff5e3"/><path d="M100 8v70" stroke="#d8c7a6" stroke-width="2"/><g stroke="#b9ad97" stroke-width="2" stroke-linecap="round"><path d="M18 26h66M18 36h70M18 46h62M18 56h68M18 66h54M116 26h66M114 36h70M116 46h60M114 56h68M116 66h50"/></g><path d="M150 -2v22l-5-5-5 5V-2" fill="#f2553c" transform="translate(4 8)"/></g>
+<g transform="translate(410 278) rotate(5)" filter="url(#sh)"><rect width="164" height="92" rx="4" fill="#fff"/><rect width="14" height="92" rx="4" fill="#1f6fe0"/><g stroke="#cfe0f7" stroke-width="1.5"><path d="M22 20h134M22 34h134M22 48h134M22 62h134M22 76h134"/></g><g fill="none" stroke="#1f4fa8" stroke-width="2" stroke-linecap="round"><path d="M26 16q4-6 8 0t8 0 8 0 8 0 8 0 8 0 8 0 8 0 8 0 8 0 8 0"/><path d="M26 30q4-6 8 0t8 0 8 0 8 0 8 0 8 0 8 0 8 0 8 0 8 0 8 0 8 0 8 0"/><path d="M26 44q4-6 8 0t8 0 8 0 8 0 8 0 8 0 8 0 8 0 8 0"/><path d="M26 58q4-6 8 0t8 0 8 0 8 0 8 0"/></g></g>
+<g transform="translate(470 334) rotate(-28)" filter="url(#sh)"><rect width="96" height="9" rx="2" fill="#ffc63d"/><path d="M96 0l14 4.5L96 9z" fill="#f2d3a8"/><path d="M106 3l4 1.5-4 1.5z" fill="#333"/><rect x="-10" width="10" height="9" rx="2" fill="#f28aa0"/><rect x="-2" width="5" height="9" fill="#b7b7b7"/></g>
+</svg></div></section>`;
+
+function render(){
+ const r=(location.hash.slice(1)||'home');const view=V[r]?r:'home';
+ $('#heroSlot').innerHTML=view==='home'?HERO:'';
+ $('#main').innerHTML=S.loaded?V[view]():'<div class="empty">불러오는 중이에요…</div>';
+ const grp={churches:'about',staff:'about',news:'news',events:'events',survey:'survey',inquiry:'survey'}[view];
+ document.querySelectorAll('.mi').forEach(m=>m.classList.toggle('on',m.dataset.g===grp));
+ $('#yearSub').innerHTML=[...S.years].sort((a,b)=>b.year-a.year).map(y=>`<a href="#events" data-y="${y.year}">${y.year}년</a>`).join('');
+ const u=user();
+ $('#acct').innerHTML=u?`<span style="padding:0 6px">${esc(u.nick||u.name)}님</span>${u.admin?'<div class="mi"><a href="#admin">관리자</a></div>':'<div class="mi"><a href="#mypage">마이페이지</a></div>'}<button class="btn sm sun" data-a="logout">로그아웃</button>`:`<div class="mi"><a href="#login">로그인</a></div><a class="btn sm sun" href="#signup">회원가입</a>`;
+ $('#cToday').textContent=S.counts.today;$('#cTotal').textContent=S.counts.total;
+ $('#nav').classList.remove('open');
+ if(view==='mypage'&&u&&!u.admin)fillUser(u);
+}
+const byId=(arr,id)=>arr.find(x=>String(x.id)===String(id));
+const curY=()=>S.years.find(x=>x.year===ev.year),curE=()=>curY()&&curY().events.find(x=>x.id===+ev.event);
+const A={
+ withdraw(){modal(`<h3>정말 탈퇴할까요?</h3><p>확인을 위해 비밀번호를 입력해 주세요. 탈퇴 후에는 되돌릴 수 없어요.</p><form class="f" id="wd"><label>비밀번호<input name="pw" type="password" required></label><div class="row"><button class="btn del">탈퇴하기</button><button type="button" class="btn ghost" data-close>취소</button></div></form>`)},
+ pvRole(k){pv=k;render()},
+ pvAll(){document.querySelectorAll('#sv input[name=ev],#sv input[name=sem],#sv input[name^=m]').forEach(x=>{x.checked=true;x.dispatchEvent(new Event('change',{bubbles:true}))})},
+ artF(a){artF=a;render()},
+ lb(i){lbK='art';lbI=+i;lbShow()},
+ lbp(i){lbK='pr';lbI=+i;lbShow()},
+ prF(a){prF=a;render()},
+ lbMove(d){const n=(lbK==='pr'?prList():artList()).length;lbI=(lbI+ +d+n)%n;lbShow()},
+ chReg(r){chR=r;render()},
+ logout(){sb.auth.signOut().then(()=>{toast('로그아웃했어요');location.hash='#home';refresh()})},
+ addChurch(){form('교회 추가',[{k:'name',label:'교회 이름'},{k:'pastor',label:'담임목사 이름'},{k:'addr',label:'주소'},{k:'zip',label:'우편번호'},{k:'tel',label:'전화 (선택)'}],o=>q(sb.from('churches').insert({...o,sort:S.churches.length})))},
+ editChurch(id){const c=byId(S.churches,id);form('교회 수정',[{k:'name',label:'교회 이름',v:c.name},{k:'pastor',label:'담임목사 이름',v:c.pastor},{k:'addr',label:'주소',v:c.addr},{k:'zip',label:'우편번호',v:c.zip},{k:'tel',label:'전화 (선택)',v:c.tel}],o=>q(sb.from('churches').update(o).eq('id',c.id)))},
+ delChurch(id){ask('이 교회를 목록에서 삭제할까요?',()=>q(sb.from('churches').delete().eq('id',id)))},
+ addStaff(){form('임원 추가',[{k:'role',label:'직책'},{k:'name',label:'이름'},{k:'church',label:'소속교회'}],o=>q(sb.from('staff').insert({...o,sort:S.staff.length})))},
+ editStaff(id){const x=byId(S.staff,id);form('임원 수정',[{k:'role',label:'직책',v:x.role},{k:'name',label:'이름',v:x.name},{k:'church',label:'소속교회',v:x.church}],o=>q(sb.from('staff').update(o).eq('id',x.id)))},
+ delStaff(id){ask('이 임원을 삭제할까요?',()=>q(sb.from('staff').delete().eq('id',id)))},
+ addNews(){form('소식 쓰기',[{k:'title',label:'제목'},{k:'date',label:'날짜',type:'date',v:today()},{k:'body',label:'내용',type:'textarea'}],o=>q(sb.from('news').insert({title:o.title,body:o.body,date:o.date||today()})))},
+ editNews(id){const p=byId(S.news,id);form('소식 수정',[{k:'title',label:'제목',v:p.title},{k:'date',label:'날짜',type:'date',v:p.date},{k:'body',label:'내용',type:'textarea',v:p.body}],o=>q(sb.from('news').update({title:o.title,body:o.body,date:o.date||p.date}).eq('id',p.id)))},
+ delNews(id){ask('이 소식을 삭제할까요?',()=>q(sb.from('news').delete().eq('id',id)))},
+ addYear(){const n=Math.max(...S.years.map(y=>y.year),2025)+1;form('연도 추가',[{k:'year',label:'연도',v:n,type:'number'}],async o=>{const y=+o.year;if(!y||S.years.some(x=>x.year===y))throw new Error('이미 있거나 잘못된 연도예요');await q(sb.from('events').insert(['사생대회','성경필사대회','성경고사·암송·찬양·율동대회'].map((name,i)=>({year:y,name,sort:i}))));ev={year:y,event:null,tab:'photo'}})},
+ pickYear(id){ev={year:+id,event:null,tab:'photo'};render()},
+ pickEv(id){ev.event=+id;ev.tab='photo';render()},
+ addEvent(){form(ev.year+'년 행사 추가',[{k:'name',label:'행사 이름'}],o=>{if(!o.name)throw new Error('행사 이름을 입력해 주세요');return q(sb.from('events').insert({year:ev.year,name:o.name,sort:curY().events.length}))})},
+ renameEv(){const e=curE();form('행사 이름 수정',[{k:'name',label:'행사 이름',v:e.name}],o=>q(sb.from('events').update({name:o.name||e.name}).eq('id',e.id)))},
+ delEv(){const e=curE();ask('이 행사와 사진·영상을 모두 삭제할까요?',async()=>{const paths=e.photos.map(x=>x.path).filter(Boolean);if(paths.length)await sb.storage.from('media').remove(paths);await q(sb.from('events').delete().eq('id',e.id));ev.event=null})},
+ tab(id){ev.tab=id;render()},
+ delPhoto(id){const p=curE().photos.find(x=>String(x.id)===String(id));ask('이 사진을 삭제할까요?',async()=>{if(p&&p.path)await sb.storage.from('media').remove([p.path]);await q(sb.from('media').delete().eq('id',id))})},
+ addVideo(){form('동영상 추가',[{k:'title',label:'영상 제목'},{k:'url',label:'유튜브 등 영상 주소',type:'url'}],o=>{if(!o.url)throw new Error('영상 주소를 입력해 주세요');return q(sb.from('media').insert({event_id:curE().id,kind:'video',url:o.url,title:o.title}))})},
+ delVideo(id){ask('이 동영상을 삭제할까요?',()=>q(sb.from('media').delete().eq('id',id)))},
+ reply(id){const x=byId(S.inquiries,id);form('답변',[{k:'reply',label:'답변 내용',type:'textarea',v:x.reply}],o=>q(sb.from('inquiries').update({reply:o.reply}).eq('id',x.id)))},
+ delIq(id){ask('이 문의를 삭제할까요?',()=>q(sb.from('inquiries').delete().eq('id',id)))}
+};
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-a]');if(b){e.preventDefault();A[b.dataset.a](b.dataset.id);return}
+ const g=e.target.closest('[data-go-ev]');if(g){const[y,id]=g.dataset.goEv.split('|');ev={year:+y,event:+id,tab:'photo'};location.hash='#events';render();return}
+ const ya=e.target.closest('[data-y]');if(ya){ev={year:+ya.dataset.y,event:null,tab:'photo'};if(location.hash==='#events'){e.preventDefault();render()}return}
+ const r=e.target.closest('[data-r]');if(r){rating=+r.dataset.r;document.querySelectorAll('[data-r]').forEach(x=>x.classList.toggle('on',+x.dataset.r<=rating))}
+});
+document.addEventListener('input',e=>{if(e.target.id==='chSearch'){chQ=e.target.value;$('#chGrid').innerHTML=chCards()}});
+document.addEventListener('change',e=>{
+ if(/^m\d+$/.test(e.target.name)){const i=e.target.name.slice(1),sel=[...document.querySelectorAll(`[name=m${i}]:checked`)].map(x=>x.value);$('#sec'+i).querySelectorAll('[data-k]').forEach(el=>{const on=el.dataset.k.split(' ').some(k=>sel.includes(k));el.hidden=!on;if(!on)el.querySelectorAll('input').forEach(x=>x.checked=false)})}
+ if(e.target.dataset.sec!==undefined)$('#sec'+e.target.dataset.sec).hidden=!e.target.checked;
+ if(e.target.id==='role')$('#roleBox').innerHTML=roleBox(e.target.value);
+ if(e.target.id==='kids')$('#kidG').innerHTML=kidRows(+e.target.value);
+ if(e.target.id==='upPhoto'){upload([...e.target.files])}
+});
+async function shrink(f){const url=URL.createObjectURL(f);const img=new Image();await new Promise((ok,no)=>{img.onload=ok;img.onerror=no;img.src=url});const c=document.createElement('canvas'),k=Math.min(1,1600/Math.max(img.width,img.height));c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);return await new Promise(r=>c.toBlob(r,'image/jpeg',.82))}
+async function upload(files){const e=curE();if(!e||!files.length)return;let ok=0;toast(files.length+'장 올리는 중…');
+ for(const [i,f] of files.entries()){try{const blob=await shrink(f);const path=`events/${e.id}/${Date.now()}_${i}.jpg`;
+  const {error}=await sb.storage.from('media').upload(path,blob,{contentType:'image/jpeg'});if(error)throw error;
+  const url=sb.storage.from('media').getPublicUrl(path).data.publicUrl;await q(sb.from('media').insert({event_id:e.id,kind:'photo',url,path}));ok++}catch(err){console.error(err)}}
+ await load();render();toast(ok===files.length?ok+'장 올렸어요':`${ok}장 올렸고 ${files.length-ok}장은 실패했어요`)}
+const busy=(f,on)=>{const b=f.querySelector('button:not([type=button])');if(b)b.disabled=on};
+const kidsOf=o=>o.role==='학부모'?Array.from({length:+o.kids},(_,i)=>o['kid'+i]):[];
+document.addEventListener('submit',async e=>{
+ const f=e.target,fd=new FormData(f);
+ if(f.id==='lg'){e.preventDefault();busy(f,true);
+  const {error}=await sb.auth.signInWithPassword({email:emailOf(fd.get('phone')),password:fd.get('pw')});busy(f,false);
+  if(error)return toast('전화번호 또는 비밀번호가 맞지 않아요');await load();toast((S.me?S.me.name:'')+'님 환영해요');location.hash=S.me&&S.me.admin?'#admin':'#home';render()}
+ if(f.id==='su'){e.preventDefault();const o=Object.fromEntries(fd);busy(f,true);
+  try{await fn({action:'signup',...o,password:o.pw,agree:!!o.agree&&!!o.age14,kids:kidsOf(o)});
+   const {error}=await sb.auth.signInWithPassword({email:emailOf(o.phone),password:o.pw});if(error)throw new Error('가입은 되었어요. 로그인해 주세요');
+   await load();toast('가입을 환영해요!');location.hash='#home';render()}catch(err){toast(err.message);busy(f,false)}}
+ if(f.id==='sv'&&location.hash==='#preview'){e.preventDefault();return toast('미리보기에서는 제출되지 않아요')}
+ if(f.id==='sv'){e.preventDefault();const u=user(),ch=fd.getAll('ev').map(Number),sc=fd.getAll('sem').map(Number);
+  const miss=id=>{const el=$('#'+id);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('miss');toast('필수 문항에 답해 주세요')};
+  document.querySelectorAll('.miss').forEach(x=>x.classList.remove('miss'));
+  if(!ch.length&&!sc.length)return toast('참여한 행사를 하나 이상 골라 주세요');
+  for(const j of sc){if(!fd.get('so'+j))return miss('qso'+j)}
+  for(const i of ch){if(!fd.get('o'+i))return miss('qo'+i);if(!SV[i].noAgain&&!fd.get('a'+i))return miss('qa'+i)}
+  if(!fd.get('go'))return miss('qgo');
+  const answers=ch.map(i=>{const s=SV[i];return{ev:s.name,part:fd.get('p'+i)||'',multi:fd.getAll('m'+i),overall:+fd.get('o'+i),items:s.items.map((_,j)=>+fd.get(`i${i}_${j}`)||0),picks:s.picks.map((_,j)=>fd.get(`k${i}_${j}`)||''),again:fd.get('a'+i),good:fd.get('g'+i),bad:fd.get('b'+i),idea:fd.get('d'+i),load:+fd.get('l'+i)||0,pr:+fd.get('pr'+i)||0,pc:fd.get('pc'+i)||'',pw:fd.getAll('pw'+i),pi:fd.get('pi'+i)||'',joy:+fd.get('j'+i)||0,ka:fd.get('ka'+i)||'',jf:+fd.get('jf'+i)||0,jm:fd.get('jm'+i)||'',support:fd.get('s'+i)||''}});
+  busy(f,true);try{await q(sb.from('surveys').insert({by_name:dispName(fd),role:roleText(u),church:u.church,answers,sem:sc.map(j=>({ev:SEM[j],overall:+fd.get('so'+j),lecR:+fd.get('sl'+j)||0,conR:+fd.get('sc'+j)||0,items:SEMI.map((_,k)=>+fd.get(`si${j}_${k}`)||0),again:fd.get('sa'+j),lect:fd.get('st'+j),use:fd.get('su'+j),bad:fd.get('sb'+j),want:fd.get('sw'+j),rec:fd.get('sr'+j)})),general:{overall:+fd.get('go'),newEv:fd.getAll('gn'),newEtc:fd.get('gnx'),ch:fd.getAll('gc'),free:fd.get('gf')}}));await load()}catch(err){busy(f,false);return toast(err.message)}scrollTo(0,0);
+  $('#main').innerHTML='<div class="card" style="max-width:520px"><h2>소중한 의견 감사합니다</h2><p>남겨주신 의견은 내년 행사와 연합회 활동 준비에 반영하겠습니다.</p><a class="btn" href="#home">처음으로</a></div>'}
+ if(f.id==='wd'){e.preventDefault();busy(f,true);
+  try{await fn({action:'withdraw',password:fd.get('pw')});await sb.auth.signOut();close();toast('탈퇴가 완료되었어요. 그동안 함께해 주셔서 감사합니다');location.hash='#home';await refresh()}catch(err){toast(err.message);busy(f,false)}}
+ if(f.id==='mp'){e.preventDefault();const o=Object.fromEntries(fd);busy(f,true);
+  try{await fn({action:'update',...o,password:o.pw||'',kids:kidsOf(o)});await load();toast('정보를 수정했어요');render()}catch(err){toast(err.message);busy(f,false)}}
+ if(f.id==='iq'){e.preventDefault();busy(f,true);
+  try{await q(sb.from('inquiries').insert({title:fd.get('title'),body:fd.get('body'),by_name:dispName(fd)}));await load();toast('문의를 남겼어요');render()}catch(err){toast(err.message);busy(f,false)}}
+});
+addEventListener('keydown',e=>{if(!$('.lb'))return;if(e.key==='ArrowRight')A.lbMove(1);if(e.key==='ArrowLeft')A.lbMove(-1);if(e.key==='Escape')close()});
+$('#burger').onclick=()=>$('#nav').classList.toggle('open');
+addEventListener('hashchange',()=>{render();scrollTo(0,0)});
+sb.auth.onAuthStateChange((ev)=>{if(ev==='TOKEN_REFRESHED')return});
+render();refresh();
+}
+</script>
+</body>
+</html>
