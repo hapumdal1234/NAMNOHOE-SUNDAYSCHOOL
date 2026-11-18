@@ -60,6 +60,7 @@ main{min-height:60vh;padding:32px 0 56px}
 .ev.on{outline:3px solid var(--sea)}
 .photos{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr))}
 .ph{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--sea2)}
+.vwrap{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000;margin-bottom:10px}.vwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .ph img,.ph video{width:100%;height:100%;object-fit:cover;display:block}
 .ph .x{position:absolute;top:6px;right:6px}
 .empty{padding:28px;text-align:center;color:var(--mute);border:2px dashed var(--line);border-radius:16px}
@@ -159,6 +160,7 @@ let chQ='',chR='전체';
 let S={churches:[],staff:[],news:[],years:[],inquiries:[],surveys:[],users:[],counts:{today:0,total:0},me:null,loaded:false};
 async function q(p){const {data,error}=await p;if(error){console.error(error);throw new Error(error.message.includes('row-level')?'권한이 없어요':'저장하지 못했어요')}return data}
 async function fn(body){const {data,error}=await sb.functions.invoke('account',{body});if(error){let m='요청을 처리하지 못했어요';try{m=(await error.context.json()).error||m}catch(_){}throw new Error(m)}return data}
+function embedOf(u){u=String(u||'');let m=u.match(/drive\.google\.com\/file\/d\/([\w-]+)/);if(m)return `https://drive.google.com/file/d/${m[1]}/preview`;m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/|live\/))([\w-]{11})/);if(m)return `https://www.youtube.com/embed/${m[1]}`;return ''}
 async function load(){
  const {data:{session}}=await sb.auth.getSession();
  const [c,st,n,e,m,iq,cnt]=await Promise.all([
@@ -246,7 +248,7 @@ V.events=()=>{
  ${e?`<section style="margin-top:28px"><div class="crumb">${y.year}년 · ${esc(e.name)}</div><div class="row between"><h2>${esc(e.name)}</h2>${isAdmin()?`<div class="row"><button class="btn sm ghost" data-a="renameEv">이름 수정</button><button class="btn sm del" data-a="delEv">행사 삭제</button></div>`:''}</div>
  <div class="row" style="margin:10px 0 16px"><button class="chip ${ev.tab==='photo'?'on':''}" data-a="tab" data-id="photo">사진</button><button class="chip ${ev.tab==='video'?'on':''}" data-a="tab" data-id="video">동영상</button></div>
  ${ev.tab==='photo'?`${artOf(y.year,e).length?gallery(e)+'<h3>행사 사진</h3>':''}${isAdmin()?`<label class="btn sm" style="display:inline-flex;margin-bottom:12px">+ 사진 올리기<input type="file" accept="image/*" multiple id="upPhoto" hidden></label>`:''}<div class="photos">${e.photos.map((p,i)=>`<div class="ph"><img loading="lazy" src="${esc(p.url)}" alt="${esc(e.name)} 사진 ${i+1}">${isAdmin()?`<button class="btn sm del x" data-a="delPhoto" data-id="${p.id}">삭제</button>`:''}</div>`).join('')}</div>${e.photos.length?'':`<div class="empty">${artOf(y.year,e).length?'행사 현장 사진이 아직 없어요':'아직 올라온 사진이 없어요'}</div>`}`
- :`${isAdmin()?`<button class="btn sm" data-a="addVideo" style="margin-bottom:12px">+ 동영상 링크 추가</button>`:''}<div class="grid">${e.videos.map((v,i)=>`<div class="card"><div class="row"><svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#f2553c"/><path d="M16 12l12 8-12 8z" fill="#fff"/></svg><div><b>${esc(v.title)}</b><div class="meta"><a href="${esc(v.url)}" target="_blank" rel="noopener">영상 보러 가기</a></div></div></div>${isAdmin()?`<button class="btn sm del" style="margin-top:10px" data-a="delVideo" data-id="${v.id}">삭제</button>`:''}</div>`).join('')}</div>${e.videos.length?'':'<div class="empty">아직 올라온 동영상이 없어요</div>'}`}
+ :`${isAdmin()?`<button class="btn sm" data-a="addVideo" style="margin-bottom:12px">+ 동영상 링크 추가</button>`:''}<div class="grid">${e.videos.map((v,i)=>`<div class="card">${embedOf(v.url)?`<div class="vwrap"><iframe src="${esc(embedOf(v.url))}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div>`:''}<div class="row"><svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#f2553c"/><path d="M16 12l12 8-12 8z" fill="#fff"/></svg><div><b>${esc(v.title)}</b><div class="meta"><a href="${esc(v.url)}" target="_blank" rel="noopener">새 창에서 보기</a></div></div></div>${isAdmin()?`<button class="btn sm del" style="margin-top:10px" data-a="delVideo" data-id="${v.id}">삭제</button>`:''}</div>`).join('')}</div>${e.videos.length?'':'<div class="empty">아직 올라온 동영상이 없어요</div>'}`}
  </section>`:(y?'<p class="note" style="margin-top:14px">행사를 누르면 사진과 동영상을 볼 수 있어요.</p>':'')}`};
 const needLogin=t=>`<div class="card" style="max-width:520px"><h2>${t}</h2><p>로그인한 회원만 참여할 수 있어요.</p><div class="row"><a class="btn" href="#login">로그인</a><a class="btn ghost" href="#signup">회원가입</a></div></div>`;
 const SV=[
@@ -450,7 +452,7 @@ const A={
  delEv(){const e=curE();ask('이 행사와 사진·영상을 모두 삭제할까요?',async()=>{const paths=e.photos.map(x=>x.path).filter(Boolean);if(paths.length)await sb.storage.from('media').remove(paths);await q(sb.from('events').delete().eq('id',e.id));ev.event=null})},
  tab(id){ev.tab=id;render()},
  delPhoto(id){const p=curE().photos.find(x=>String(x.id)===String(id));ask('이 사진을 삭제할까요?',async()=>{if(p&&p.path)await sb.storage.from('media').remove([p.path]);await q(sb.from('media').delete().eq('id',id))})},
- addVideo(){form('동영상 추가',[{k:'title',label:'영상 제목'},{k:'url',label:'유튜브 등 영상 주소',type:'url'}],o=>{if(!o.url)throw new Error('영상 주소를 입력해 주세요');return q(sb.from('media').insert({event_id:curE().id,kind:'video',url:o.url,title:o.title}))})},
+ addVideo(){form('동영상 추가',[{k:'title',label:'영상 제목'},{k:'url',label:'유튜브 또는 구글드라이브 영상 주소',type:'url'}],o=>{if(!o.url)throw new Error('영상 주소를 입력해 주세요');return q(sb.from('media').insert({event_id:curE().id,kind:'video',url:o.url,title:o.title}))})},
  delVideo(id){ask('이 동영상을 삭제할까요?',()=>q(sb.from('media').delete().eq('id',id)))},
  reply(id){const x=byId(S.inquiries,id);form('답변',[{k:'reply',label:'답변 내용',type:'textarea',v:x.reply}],o=>q(sb.from('inquiries').update({reply:o.reply}).eq('id',x.id)))},
  delIq(id){ask('이 문의를 삭제할까요?',()=>q(sb.from('inquiries').delete().eq('id',id)))}
