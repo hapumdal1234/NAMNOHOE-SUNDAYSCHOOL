@@ -323,7 +323,7 @@ const userForm=(id,edit)=>`<form class="f" id="${id}">
  <div><div style="font-weight:500;font-size:15px;margin-bottom:6px">성별</div><div class="radios"><label><input type="radio" name="sex" value="남" required>남</label><label><input type="radio" name="sex" value="여">여</label></div></div>
  <label>나이<select name="age" required><option value="">선택</option>${AGES.map(a=>`<option>${a}</option>`).join('')}</select></label>
  <label>소속교회<select name="church" required><option value="">남노회 소속교회 선택</option>${[...S.churches].sort((a,b)=>a.name.localeCompare(b.name,'ko')).map(c=>`<option>${esc(c.name)}</option>`).join('')}</select></label>
- <label>직분<select name="role" id="role" required><option value="">선택</option><option>목회자</option><option>부서사역자</option><option>교사</option><option>학부모</option><option>참가자(학생)</option></select></label>
+ <label>직분<select name="role" id="role" required><option value="">선택</option><option>목회자</option><option>부서사역자</option><option>교사</option><option>학부모</option><option>참가자(학생)</option><option>운영진(노회임원)</option></select></label>
  <div id="roleBox"></div>${edit?'':CONSENT}<button class="btn">${edit?'정보 수정':'가입하기'}</button></form>`;
 const CONSENT=`<div class="box consent"><b>개인정보 수집·이용 동의 (필수)</b>
  <ul><li><b>수집 항목</b>: 이름, 닉네임, 전화번호, 성별, 나이대, 소속교회, 직분(섬기는 부서, 자녀 학년)</li>
@@ -349,7 +349,7 @@ function roleBox(r){
  if(r==='학부모')return `<div class="box"><label>자녀 수<select name="kids" id="kids">${[1,2,3,4,5].map(n=>`<option>${n}</option>`).join('')}</select></label><div id="kidG" style="display:grid;gap:10px">${kidRows(1)}</div></div>`;
  return ''}
 const kidRows=n=>Array.from({length:n},(_,i)=>`<label>${i+1}째 자녀 학년<select name="kid${i}" required><option value="">선택</option>${G.map(g=>`<option>${g}</option>`).join('')}</select></label>`).join('');
-const roleText=u=>u.role==='학부모'?`학부모 (자녀 ${u.kids.join(', ')})`:`${u.role} · ${u.sub}`;
+const roleText=u=>u.role==='학부모'?`학부모 (자녀 ${u.kids.join(', ')})`:u.sub?`${u.role} · ${u.sub}`:u.role;
 const avgOf=a=>{a=a.filter(Boolean);return a.length?a.reduce((x,y)=>x+y,0)/a.length:0};
 const cntOf=(a,o)=>o.map(x=>a.filter(v=>v===x).length);
 const bars=(o,c,t)=>o.map((l,k)=>`<div class="bar"><span>${esc(l)}</span><div class="bt"><i style="width:${t?c[k]/t*100:0}%"></i></div><b>${c[k]}</b></div>`).join('');
